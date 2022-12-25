@@ -91,7 +91,7 @@ For the actual logic we only need to do three things. (1) Figure out which gate 
 
 Now let’s bring this all together and look at the final code:
 
-    ```python
+```python
 import time
 from machine import Pin, ADC
 
