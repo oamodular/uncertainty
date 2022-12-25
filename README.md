@@ -116,7 +116,8 @@ while True:
         if num != active_gate:
             outs[num].value(0)
 
-    time.sleep(0.001)```
+    time.sleep(0.001)
+```
 
 That’s it. That’s a module, baby. A baby module. Done.
 
