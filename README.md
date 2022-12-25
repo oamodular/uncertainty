@@ -33,11 +33,11 @@ To access this I/O use the following pins. You can use other pins, but they won�
 
 We’re going to turn Uncertainty into a device where you send it a voltage to select which of the 8 gates is active. Only one will be active at a time. Send it -5v and it’ll make the first gate active. As you raise the voltage it’ll go through each gate sequential. Going from -5v to +5v will actually cycle through all 8 gates twice. This way we can cycle through all the outputs with either a unipolar or bipolar output.
 
-###Getting set up
+### Getting set up
 
 If we were using C we’d write our code in Arduino, but for MicroPython the easiest thing seems to be Thonny. So grab that and launch it. Now connect your Uncertainty to your computer over USB-C while holding down the boot button with the little B on it.
 
-[photo of boot button on seeeduino xiao]
+![Seeeduino Xiao RP2040 with a tiny boot button in the lower-right corner of the board](seeeduino.jpg)
 
 You should see RPI-RP2 on your desktop and Thonny should prompt you to install MicroPython onto the device. Do it. Just do it. Now Thonny can talk to Uncertainty whenever you plug in USB-C without holding down the boot button.
 
