@@ -46,7 +46,8 @@ These two lines import everything we need to deal get CV in and Gates out:
 
 ```python
 import time
-from machine import Pin, ADC```
+from machine import Pin, ADC
+```
 
 But our code doesn’t know which pin on the RP2040 is the CV in and which are the gates out. So let’s just set up a few variables:
 
