@@ -1,6 +1,6 @@
 # Hack Uncertainty for fun and profit
 
-Uncertainty's firmware is open-source and easy to swap with a humble USB-C cable. You can write your own firmware in C, MicroPython, CircuitPython, and probably a bunch of other languages. It's startlingly easy to work and this document will outline the whole deal. Let's go…
+Uncertainty's firmware is open-source and easy to swap with a humble USB-C cable. You can write your own firmware in C++, MicroPython, CircuitPython, and probably a bunch of other languages. It's startlingly easy to work and this document will outline the whole deal. Let's go…
 
 ## Uncertainty’s Heart
 
