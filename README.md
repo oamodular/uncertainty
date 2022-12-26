@@ -85,7 +85,7 @@ For the actual logic we only need to do three things. (1) Figure out which gate 
 
 3. Now we look through each gate and if it’s not the active one, we turn it off by passing in a value of 0:
 
-    ```python
+```python
     for num in range (8):
         if num != active_gate:
             outs[num].value(0)
