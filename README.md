@@ -88,7 +88,8 @@ For the actual logic we only need to do three things. (1) Figure out which gate 
     ```python
     for num in range (8):
         if num != active_gate:
-            outs[num].value(0)```
+            outs[num].value(0)
+```
 
 Now let’s bring this all together and look at the final code:
 
