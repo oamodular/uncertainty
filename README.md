@@ -31,7 +31,7 @@ To access this I/O use the following pins. You can use other pins, but they won�
 
 ## Lets’s write a simple utility in MicroPython!
 
-We’re going to turn Uncertainty into a device where you send it a voltage to select which of the 8 gates is active. Only one will be active at a time. Send it -5v and it’ll make the first gate active. As you raise the voltage it’ll go through each gate sequential. Going from -5v to +5v will actually cycle through all 8 gates twice. This way we can cycle through all the outputs with either a unipolar or bipolar output.
+We’re going to turn Uncertainty into a device where you send it a voltage to select which of the 8 gates is active. Only one will be active at a time. 0v will activate the first gate. As you move towards -5v or +5v it switches to higher and highter gates, until it gets to gate 8.
 
 ### Getting set up
 
@@ -77,7 +77,7 @@ For the actual logic we only need to do three things. (1) Figure out which gate 
 
 1. CV comes in as a 16-bit number so we need to scale and offset it to convert the number of the active step:
 
-    ```active_gate = int(cv_in.read_u16() / 4096) - 8```
+    ```active_gate = abs(int((cv_in.read_u16() - 32768) / 4096))```
 
 2. To make a gate active we give it a value of 1:
 
@@ -109,15 +109,15 @@ outs = [Pin(27, Pin.OUT),
 
 while True:
 
-    active_gate = int(cv_in.read_u16() / 4096) - 8
-
-    outs[active_gate].value(1)
+    active_gate = abs(int((cv_in.read_u16() - 32768) / 4096))
 
     for num in range (8):
         if num != active_gate:
             outs[num].value(0)
 
-    time.sleep(0.001)
+    outs[active_gate].value(1)
+
+    time.sleep(0.0001)
 ```
 
 That’s it. That’s a module, baby. A baby module. Done.
