@@ -123,5 +123,4 @@ That’s it. That’s a module, baby. A baby module. Done.
 
 ## How to reinstall the default firmware
 
-You hold down this button while you plug connect 
-
+You hold down the boot button when you plug in the USB-C as described in the *Getting started* section. Then you drag ```uncertainty.uf2``` onto the RPI-RP2 disk. It should then unmount. All set! The same works for any .uf2 firmware.
