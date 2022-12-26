@@ -13,12 +13,12 @@ outs = [Pin(27, Pin.OUT),
 
 while True:
 
-    active_gate = int(cv_in.read_u16() / 4096) - 8
-
-    outs[active_gate].value(1)
+    active_gate = abs(int((cv_in.read_u16() - 32768) / 4096))
 
     for num in range (8):
         if num != active_gate:
             outs[num].value(0)
 
-    time.sleep(0.001)
+    outs[active_gate].value(1)
+
+    time.sleep(0.0001)
