@@ -42,17 +42,24 @@ bool negTriggered = false;
 int samplesAccumulated = 0;
 // frac to track max value
 cv_t maxValue = 0;
+// trigger polarity
+int triggerPolarity = 0;
+// special threshold for positive triggers only
+cv_t positiveTriggerThreshold = cv_t(3.0);
 
 uint32_t startupCounter = 0;
 
 void setup() {
   // 2x overclock for MAX POWER
-  set_sys_clock_khz(250000, true);
+  //set_sys_clock_khz(250000, true);
+
+  Serial.begin(9600);
   
   // initialize ADC
   adc_init();
   adc_gpio_init(inputPin);
   adc_select_input(0);
+  gpio_set_pulls(inputPin, false, false);
   
   // initialize gate out pins
   for(int i=0; i<NUM_GATES; i++) {
@@ -86,16 +93,17 @@ void loop() {
   }
 
   // if there's a rising edge...
-  if(lastInput < lowToHighInputThreshold && input > lowToHighInputThreshold && isInputHigh == false) {
-    isInputHigh = true;
-    // if positive gate
-    if(polarity) {
+  if(polarity && isInputHigh == false) {
+    if(lastInput < positiveTriggerThreshold && input > positiveTriggerThreshold) {
+      Serial.println((float)input);
+      isInputHigh = true;
+      triggerPolarity = 1;
       // iterate over the gates
       for(int i=0; i<NUM_GATES; i++) {
         // wrap random number generation
         // to a max of roughly 1000 
         cv_t diceRoll = cv_t(rand() & 0x3FFF)>>14;
-
+  
         // modify this #define at the top of the
         // file to change how the module works
         if(TOGGLE_GATES) {
@@ -114,9 +122,14 @@ void loop() {
         gpio_put(gatePins[i], gateStates[i]);
       }
     }
-    else // if negative gate
-    {
+  }
+
+  // if there's a negative rising edge
+  if(!polarity && isInputHigh == false) {
+    if(lastInput < lowToHighInputThreshold && input > lowToHighInputThreshold) {
+      isInputHigh = true;
       negTriggered = true;
+      triggerPolarity = -1;
     }
   }
 
@@ -159,10 +172,20 @@ void loop() {
   }
 
   // turn off gates when input goes low
-  if(lastInput > highToLowInputThreshold && input < highToLowInputThreshold && isInputHigh == true) {
-    isInputHigh = false;
-    for(int i=0; i<NUM_GATES; i++) {
-      gpio_put(gatePins[i], 0);
+  if(triggerPolarity < 0) {
+    if(lastInput > highToLowInputThreshold && input < highToLowInputThreshold && isInputHigh == true) {
+      isInputHigh = false;
+      for(int i=0; i<NUM_GATES; i++) {
+        gpio_put(gatePins[i], 0);
+      }
+    }
+  } else {
+    if(lastInput > (positiveTriggerThreshold - cv_t(0.5)) && input < (positiveTriggerThreshold - cv_t(0.5)) && isInputHigh == true) {
+      Serial.println((float)input);
+      isInputHigh = false;
+      for(int i=0; i<NUM_GATES; i++) {
+        gpio_put(gatePins[i], 0);
+      }
     }
   }
   
