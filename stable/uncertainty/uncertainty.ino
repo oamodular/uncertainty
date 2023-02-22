@@ -94,7 +94,7 @@ void loop() {
 
   // if there's a rising edge...
   if(polarity && isInputHigh == false) {
-    if(lastInput < positiveTriggerThreshold && input > positiveTriggerThreshold) {
+    if(input > positiveTriggerThreshold) {
       Serial.println((float)input);
       isInputHigh = true;
       triggerPolarity = 1;
@@ -126,7 +126,7 @@ void loop() {
 
   // if there's a negative rising edge
   if(!polarity && isInputHigh == false) {
-    if(lastInput < lowToHighInputThreshold && input > lowToHighInputThreshold) {
+    if(input > lowToHighInputThreshold) {
       isInputHigh = true;
       negTriggered = true;
       triggerPolarity = -1;
@@ -173,14 +173,14 @@ void loop() {
 
   // turn off gates when input goes low
   if(triggerPolarity < 0) {
-    if(lastInput > highToLowInputThreshold && input < highToLowInputThreshold && isInputHigh == true) {
+    if(input < highToLowInputThreshold && isInputHigh == true) {
       isInputHigh = false;
       for(int i=0; i<NUM_GATES; i++) {
         gpio_put(gatePins[i], 0);
       }
     }
   } else {
-    if(lastInput > (positiveTriggerThreshold - cv_t(0.5)) && input < (positiveTriggerThreshold - cv_t(0.5)) && isInputHigh == true) {
+    if(input < (positiveTriggerThreshold - cv_t(0.5)) && isInputHigh == true) {
       Serial.println((float)input);
       isInputHigh = false;
       for(int i=0; i<NUM_GATES; i++) {
