@@ -152,6 +152,23 @@ static bool audioHandler(struct repeating_timer *t) {
   return true;
 }
 
+// cute little led animation
+void startupSequence() {
+  // startup sequence
+  while(startupCounter<128*8) {
+    int pinIndex = startupCounter>>7;
+    for(int i=0;i<8;i++) {
+      if(i==pinIndex) {
+        gpio_put(gatePins[pinIndex], startupCounter%128 < 120);
+      } else {
+        gpio_put(gatePins[i], 0);
+      }
+    }
+    startupCounter++;
+    delay(1);
+  }
+}
+
 void setup() {
   // 2x overclock for MAX POWER
   set_sys_clock_khz(250000, true);
@@ -171,19 +188,7 @@ void setup() {
 
   Serial.begin(9600);
 
-  // startup sequence
-  while(startupCounter<128*8) {
-    int pinIndex = startupCounter>>7;
-    for(int i=0;i<8;i++) {
-      if(i==pinIndex) {
-        gpio_put(gatePins[pinIndex], startupCounter%128 < 120);
-      } else {
-        gpio_put(gatePins[i], 0);
-      }
-    }
-    startupCounter++;
-    delay(1);
-  }
+  startupSequence();
 
   add_repeating_timer_us(-TIMER_INTERVAL, audioHandler, NULL, &_timer_);
 }
