@@ -9,12 +9,8 @@
 
 using namespace fp;
 
-// ---------------------------------------- //
-// ----------- TODO: EVERYTHING ----------- //
-// ---------------------------------------- //
-
-// should gates be toggled on clock, or set to the dice roll on clock?
-#define TOGGLE_GATES false
+#define TIMER_INTERVAL ((int)(1000000.0/40000.0))
+#define SAMPLE_RATE (1000000.0/TIMER_INTERVAL)
 
 // number of gates
 #define NUM_GATES 8
@@ -23,69 +19,15 @@ typedef fp_t<int, 12> cv_t;
 
 // hold pins for gates
 int gatePins[] = {27,28,29,0,3,4,2,1};
-// gate states
-int gateStates[] = {0,0,0,0,0,0,0,0};
-// gate probabilities
-cv_t gateProbabilities[] = {cv_t(95/100.0),cv_t(90/100.0),cv_t(75/100.0),cv_t(50/100.0),cv_t(25/100.0),cv_t(10/100.0),cv_t(5/100.0),cv_t(2.5/100.0)};
-// inv gate probabilities
-cv_t invGateProbabilitiesMax[] = {cv_t(99.5/100.0),cv_t(80/100.0),cv_t(50/100.0),cv_t(20/100.0)};
-cv_t invGateProbabilitiesMin[] = {cv_t(60/100.0),cv_t(40/100.0),cv_t(10/100.0),cv_t(0.5/100.0)};
 // ADC input pin
 int inputPin = 26;
-// ADC threshold from low to high (tunable)
-cv_t lowToHighInputThreshold = cv_t(1.0);
-// ADC threshold from high to low (tunable)
-cv_t highToLowInputThreshold = cv_t(0.5);
-// last ADC value read, used to detect rising edge
-cv_t lastInput = cv_t(0.0);
-// bool to track input state for debounce/hysteresis
-bool isInputHigh = false;
-// bool to track if output has been triggered negatively
-bool negTriggered = false;
-// int to track how many samples we've accumulated
-int samplesAccumulated = 0;
-// frac to track max value
-cv_t maxValue = 0;
 
 uint32_t startupCounter = 0;
 
-void setup() {
-  // 2x overclock for MAX POWER
-  set_sys_clock_khz(250000, true);
-  
-  // initialize ADC
-  adc_init();
-  adc_gpio_init(inputPin);
-  adc_select_input(0);
-  
-  // initialize gate out pins
-  for(int i=0; i<NUM_GATES; i++) {
-    int pin = gatePins[i];
-    gpio_init(pin);
-    gpio_set_dir(pin, GPIO_OUT);
-  }
+struct repeating_timer _timer_;
 
-  Serial.begin(9600);
-
-  // startup sequence
-  while(startupCounter<128*8) {
-    int pinIndex = startupCounter>>7;
-    for(int i=0;i<8;i++) {
-      if(i==pinIndex) {
-        gpio_put(gatePins[pinIndex], startupCounter%128 < 120);
-      } else {
-        gpio_put(gatePins[i], 0);
-      }
-      gateStates[i] = 0;
-    }
-    startupCounter++;
-    delay(1);
-    // process inputs here first
-    return;
-  }
-}
-
-class AnalogSchmiTrig {
+// gate detector for analog input
+class AnalogSchmitTrig {
 public:
   int samplesAccumulated = 0;
   bool isInputHigh = false;
@@ -93,26 +35,24 @@ public:
   bool polarity = true;
   cv_t lowToHighInputThreshold = cv_t(1.0);
   cv_t highToLowInputThreshold = cv_t(0.5);
-  cv_t lastInput = cv_t(0.0);
   cv_t maxValue = cv_t(0.0);
   
   void Process(cv_t input) {
-    bool polarity = input > cv_t(0.0) ? true : false;
+    polarity = input > cv_t(0.0) ? true : false;
     input = polarity ? input : -input;
     
-    if(isInputHigh == false && lastInput < lowToHighInputThreshold && input > lowToHighInputThreshold) {
+    if(isInputHigh == false && input > lowToHighInputThreshold) {
       isInputHigh = true;
+      triggered = true;
     }
-    if(isInputHigh == true && lastInput > highToLowInputThreshold && input < highToLowInputThreshold) {
+    if(isInputHigh == true && input < highToLowInputThreshold) {
       isInputHigh = false;
       maxValue = 0;
     }
     
     if(triggered) {
       if(samplesAccumulated < 4) {
-        if(!polarity) {
-          maxValue = max(maxValue, min(cv_t(1.0), cv_t((max(input, cv_t(1.0))-cv_t(1.0))*cv_t(0.3))));
-        }
+        maxValue = max(maxValue, input);
         samplesAccumulated++;
       }
     }
@@ -132,68 +72,122 @@ public:
   cv_t Value() { return maxValue; }
 };
 
-void loop() {
-  cv_t input = (cv_t(adc_read())>>12)*cv_t(10.0) - cv_t(5.0);
-  
-  for(int i=0; i<NUM_GATES; i++) {
-    gpio_put(gatePins[i], 0);
+// trigger generator
+class Trigger {
+public:
+  int phase;
+  int output;
+  int width;
+  Trigger(int output=0, int widthInSamples=100) {
+    this->output = output;
+    this->width = widthInSamples;
+    this->phase = widthInSamples+1;
   }
-
-  /*
-  // poll ADC as fast as possible
-  cv_t input = (cv_t(adc_read())>>12)*cv_t(10.0) - cv_t(5.0);
-  bool polarity = input > cv_t(0.0) ? true : false;
-  input = polarity ? input : -input;
-
-  // if there's a rising edge...
-  if(lastInput < lowToHighInputThreshold && input > lowToHighInputThreshold && isInputHigh == false) {
-    isInputHigh = true;
-    // if positive gate
-    if(polarity) {
-      // iterate over the gates
-      for(int i=0; i<NUM_GATES; i++) {
-
-        
-        // set the gpio pin
-        gpio_put(gatePins[i], gateStates[i]);
-      }
-    }
-    else // if negative gate
-    {
-      negTriggered = true;
-    }
+  void Reset() {
+    phase = 0;
   }
-
-  if(negTriggered) {
-    if(samplesAccumulated < 4) {
-      if(!polarity) {
-        maxValue = max(maxValue, min(cv_t(1.0), cv_t((max(input, cv_t(1.0))-cv_t(1.0))*cv_t(0.3))));
-      }
-      samplesAccumulated++;
-    } else {
-      // iterate over the gates
-      for(int i=0; i<NUM_GATES/2; i++) {
-        
-        // set the gpio pins
-        gpio_put(gatePins[i*2], gateStates[i]);
-        gpio_put(gatePins[i*2+1], gateStates[i] ? 0 : 1);
-      }
-
-      maxValue = 0;
-      samplesAccumulated = 0;
-      negTriggered = false;
-    }
+  bool Done() {
+    return phase > width;
   }
+  void Process() {
+    gpio_put(gatePins[output], phase < width ? 1 : 0);
+    if(phase <= width) phase++;
+  }
+};
 
-  // turn off gates when input goes low
-  if(lastInput > highToLowInputThreshold && input < highToLowInputThreshold && isInputHigh == true) {
-    isInputHigh = false;
+// evenly spaced burst generator
+class EvenBurst {
+public:
+  Trigger trig;
+  int bursts;
+  int maxBursts;
+  int spacing;
+  int output;
+  int phase;
+  EvenBurst(int output=0, int maxBursts=3, int spacingInMs=50) : trig(output) {
+    this->bursts = maxBursts;
+    this->maxBursts = maxBursts;
+    this->spacing = spacingInMs;
+    this->output = output;
+    this->phase = 0;
+  }
+  void Reset() {
+    bursts = 1;
+    phase = 0;
+    trig.Reset();
+  }
+  void Process() {
+    if(bursts < maxBursts) {
+      if(trig.Done() && phase > int(SAMPLE_RATE / 1000) * spacing) {
+        bursts++;
+        trig.Reset();
+        phase = 0;
+      }
+      phase++;
+    }
+    trig.Process();
+  }
+};
+
+AnalogSchmitTrig analogTrig;
+EvenBurst* bursts[NUM_GATES];
+
+// audio rate callback- meat of the program goes here
+static bool audioHandler(struct repeating_timer *t) {
+  cv_t input = (cv_t(adc_read())>>11)*cv_t(5.0) - cv_t(5.0);
+  analogTrig.Process(input);
+  if(analogTrig.Triggered()) {
+    Serial.println(float(analogTrig.Value()));
+    cv_t spacingCoef = (input * cv_t(1.0 / 4.42));
+    spacingCoef = cv_t(1) - spacingCoef;
+    spacingCoef = spacingCoef * spacingCoef;
     for(int i=0; i<NUM_GATES; i++) {
-      gpio_put(gatePins[i], 0);
+      bursts[i]->spacing = int(spacingCoef * fp_t<int, 0>(400))+1;
+      bursts[i]->Reset();
     }
   }
+  for(int i=0; i<NUM_GATES; i++) {
+    bursts[i]->Process();
+  }
+  return true;
+}
+
+void setup() {
+  // 2x overclock for MAX POWER
+  set_sys_clock_khz(250000, true);
   
-  // record the current input for the next calc
-  lastInput = input;
-  */
+  // initialize ADC
+  adc_init();
+  adc_gpio_init(inputPin);
+  adc_select_input(0);
+  
+  // initialize gate out pins
+  for(int i=0; i<NUM_GATES; i++) {
+    int pin = gatePins[i];
+    gpio_init(pin);
+    gpio_set_dir(pin, GPIO_OUT);
+    bursts[i] = new EvenBurst(i, i+1, 100);
+  }
+
+  Serial.begin(9600);
+
+  // startup sequence
+  while(startupCounter<128*8) {
+    int pinIndex = startupCounter>>7;
+    for(int i=0;i<8;i++) {
+      if(i==pinIndex) {
+        gpio_put(gatePins[pinIndex], startupCounter%128 < 120);
+      } else {
+        gpio_put(gatePins[i], 0);
+      }
+    }
+    startupCounter++;
+    delay(1);
+  }
+
+  add_repeating_timer_us(-TIMER_INTERVAL, audioHandler, NULL, &_timer_);
+}
+
+void loop() {
+
 }
