@@ -48,6 +48,23 @@ public:
   }
 };
 
+class DCFilter {
+private:
+  // we're doing filtering of a sort, so let's
+  // use high precision values
+  typedef fp_t<int, 26> avg_t;
+  avg_t lastVal;
+public:
+  DCFilter() {
+    lastVal = 0;
+  }
+  cv_t Process(cv_t in) {
+    avg_t delta = in - lastVal;
+    lastVal += delta>>13; // to modify, shift by more bits for slower response to DC/low-freq input or fewer for more aggressive filtering
+    return in - cv_t(lastVal);
+  }
+};
+
 class MeterBallistics {
 private:
   // we're doing filtering of a sort, so let's
@@ -95,6 +112,7 @@ void startupSequence() {
 // classes for handling gate/trigger output
 Trigger* triggers[NUM_GATES];
 MeterBallistics meter;
+DCFilter dcFilter;
 
 cv_t debugVal = 0;
 
@@ -104,6 +122,9 @@ static bool audioHandler(struct repeating_timer *t) {
   cv_t input = (cv_t(adc_read() - (1<<11)) >> 11) * cv_t(5.0 / 4.42) - cv_t(0.04);
 
   debugVal = input;
+
+  // DC filter input
+  input = dcFilter.Process(input);
 
   // meter processing
   input = meter.Process(input);
