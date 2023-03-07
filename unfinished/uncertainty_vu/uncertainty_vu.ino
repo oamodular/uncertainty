@@ -116,6 +116,9 @@ DCFilter dcFilter;
 
 cv_t debugVal = 0;
 
+bool vuIsInverted = false;
+bool illuminateMax = false;
+
 // audio rate callback- meat of the program goes here
 static bool audioHandler(struct repeating_timer *t) {
   // poll ADC and convert from 12 bit value to [-1.0, 1.0]
@@ -130,11 +133,14 @@ static bool audioHandler(struct repeating_timer *t) {
   input = meter.Process(input);
 
   // scale output levels to go from 0 to 8
-  int level = int(input*fp_t<int,0>(8));
+  int level = std::min(8, int(input*fp_t<int,0>(8)));
 
   // set outputs
   for(int i=0;i<8;i++) {
-    if(i+1 <= level) triggers[i]->Reset();
+    if(i+1 <= level) {
+      int triggerIndex = vuIsInverted ? i : 7-i;
+      if(!illuminateMax || (i+1) == level) triggers[triggerIndex]->Reset();
+    }
     triggers[i]->Process();
   }
 
@@ -145,6 +151,28 @@ static bool audioHandler(struct repeating_timer *t) {
 }
 
 struct repeating_timer _timer_;
+
+#define CONFIG_PIN_TOP 6
+#define CONFIG_PIN_BOTTOM 7
+
+bool jumperBottomGround() {
+  gpio_disable_pulls(CONFIG_PIN_BOTTOM);
+  gpio_set_dir(CONFIG_PIN_BOTTOM, GPIO_IN);
+  gpio_pull_up(CONFIG_PIN_BOTTOM);
+  delay(1);
+  return !gpio_get(CONFIG_PIN_BOTTOM);
+}
+
+bool jumperTopBottom() {
+  gpio_disable_pulls(CONFIG_PIN_TOP);
+  gpio_disable_pulls(CONFIG_PIN_BOTTOM);
+  gpio_set_dir(CONFIG_PIN_TOP, GPIO_IN);
+  gpio_set_dir(CONFIG_PIN_BOTTOM, GPIO_OUT);
+  gpio_pull_up(CONFIG_PIN_TOP);
+  gpio_put(CONFIG_PIN_BOTTOM, 0);
+  delay(1);
+  return !gpio_get(CONFIG_PIN_TOP);
+}
 
 void setup() {
   // 2x overclock for MAX POWER
@@ -163,6 +191,10 @@ void setup() {
     triggers[i] = new Trigger(i, 500 /* modify/increase to hold gates open for longer */ );
   }
 
+  // init config pins
+  gpio_init(CONFIG_PIN_TOP); 
+  gpio_init(CONFIG_PIN_BOTTOM);
+
   // oooh pretty
   startupSequence();
 
@@ -175,5 +207,8 @@ void setup() {
 
 void loop() {
   Serial.println(float(debugVal));
-  delay(100);
+  vuIsInverted = jumperBottomGround();
+  delay(1);
+  illuminateMax = jumperTopBottom();
+  delay(1);
 }
