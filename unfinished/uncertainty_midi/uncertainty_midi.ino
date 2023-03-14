@@ -42,6 +42,24 @@ int lastInput = ADC_0V;
 // bool to track input state for debounce/hysteresis
 bool isInputHigh = false;
 
+// cute little led animation
+void startupSequence() {
+  uint32_t startupCounter = 0;
+  // startup sequence
+  while(startupCounter<128*8) {
+    int pinIndex = startupCounter>>7;
+    for(int i=0;i<8;i++) {
+      if(i==pinIndex) {
+        gpio_put(gatePins[pinIndex], startupCounter%128 < 120);
+      } else {
+        gpio_put(gatePins[i], 0);
+      }
+    }
+    startupCounter++;
+    delay(1);
+  }
+}
+
 void setup() {
   // 2x overclock for MAX POWER
   //set_sys_clock_khz(250000, true);
@@ -63,6 +81,8 @@ void setup() {
     gpio_set_dir(pin, GPIO_OUT);
   }
 
+  startupSequence();
+
   MIDI.begin(MIDI_CHANNEL_OMNI);
   MIDI.setHandleNoteOn(handleNoteOn);
   MIDI.setHandleNoteOff(handleNoteOff);
@@ -82,6 +102,10 @@ void handleNoteOff(byte channel, byte pitch, byte velocity)
 
 void loop() {
   // poll ADC as fast as possible
-  int input = adc_read();
+  uint8_t input = adc_read()>>5;
+  if(input != lastInput) {
+    MIDI.sendControlChange(1, input, 1);
+    lastInput = input;
+  }
   MIDI.read();
 }
