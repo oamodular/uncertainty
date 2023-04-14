@@ -32,6 +32,7 @@ public:
   int samplesAccumulated = 0;
   bool isInputHigh = false;
   bool triggered = false;
+  bool fallen = false;
   bool polarity = true;
   cv_t lowToHighInputThreshold = cv_t(1.0);
   cv_t highToLowInputThreshold = cv_t(0.5);
@@ -48,6 +49,7 @@ public:
     if(isInputHigh == true && input < highToLowInputThreshold) {
       isInputHigh = false;
       maxValue = 0;
+      fallen = true;
     }
     
     if(triggered) {
@@ -65,6 +67,12 @@ public:
       return true;
     }
     return false;
+  }
+
+  bool HasFallen() {
+    bool res = fallen;
+    if(res) fallen = false;
+    return res;
   }
 
   bool IsHigh() { return isInputHigh; }
@@ -95,8 +103,7 @@ public:
   }
 };
 
-// evenly spaced burst generator
-class EvenBurst {
+class Burst {
 public:
   Trigger trig;
   int bursts;
@@ -104,19 +111,29 @@ public:
   int spacing;
   int output;
   int phase;
-  EvenBurst(int output=0, int maxBursts=3, int spacingInMs=50) : trig(output) {
-    this->bursts = maxBursts;
-    this->maxBursts = maxBursts;
-    this->spacing = spacingInMs;
+  Burst(int output) : trig(output) {
     this->output = output;
     this->phase = 0;
   }
-  void Reset() {
+  virtual void Reset(cv_t input = 0) {}
+  virtual void Process(cv_t input = 0) {}
+  virtual void End(cv_t input = 0) {}
+};
+
+// evenly spaced burst generator
+class EvenBurst : public Burst {
+public:
+  EvenBurst(int output=0, int maxBursts=3, int spacingInMs=50) : Burst(output) {
+    this->bursts = maxBursts;
+    this->maxBursts = maxBursts;
+    this->spacing = spacingInMs;
+  }
+  void Reset(cv_t input = 0) {
     bursts = 1;
     phase = 0;
     trig.Reset();
   }
-  void Process() {
+  void Process(cv_t input = 0) {
     if(bursts < maxBursts) {
       if(trig.Done() && phase > int(SAMPLE_RATE / 1000) * spacing) {
         bursts++;
@@ -129,25 +146,60 @@ public:
   }
 };
 
+// evenly spaced continuous burst generator
+class ContinuousBurst : public Burst {
+public:
+  int spacingCoef = 1;
+  bool firing = false;
+  ContinuousBurst(int output=0, int maxBursts=3, int spacingInMs=50) : Burst(output) {
+    this->spacingCoef = maxBursts;
+  }
+  void Reset(cv_t input = 0) {
+    phase = 0;
+    trig.Reset();
+    firing = true;
+  }
+  void Process(cv_t input = 0) {
+    if(firing) {
+      if(input > cv_t(0)) {
+        spacing = int(input * fp_t<int, 0>(400));
+      }
+      if(trig.Done() && phase > int(SAMPLE_RATE / 1000) * spacing * spacingCoef) {
+        trig.Reset();
+        phase = 0;
+      }
+      phase++;
+    }
+    trig.Process();
+  }
+  virtual void End(cv_t input = 0) { firing = false; }
+};
+
 AnalogSchmitTrig analogTrig;
-EvenBurst* bursts[NUM_GATES];
+Burst* bursts[NUM_GATES];
 
 // audio rate callback- meat of the program goes here
 static bool audioHandler(struct repeating_timer *t) {
   cv_t input = (cv_t(adc_read())>>11)*cv_t(5.0) - cv_t(5.0);
+  cv_t spacingCoef = (((input > cv_t(0) ? input : -input) - cv_t(1)) * cv_t(1.0 / 4.42));
+  if(spacingCoef < cv_t(0)) spacingCoef = cv_t(0);
+  spacingCoef *= spacingCoef;
+  //spacingCoef = cv_t(1) - spacingCoef;
+  //spacingCoef = spacingCoef * spacingCoef;
   analogTrig.Process(input);
   if(analogTrig.Triggered()) {
-    Serial.println(float(analogTrig.Value()));
-    cv_t spacingCoef = (input * cv_t(1.0 / 4.42));
-    spacingCoef = cv_t(1) - spacingCoef;
-    spacingCoef = spacingCoef * spacingCoef;
     for(int i=0; i<NUM_GATES; i++) {
-      bursts[i]->spacing = int(spacingCoef * fp_t<int, 0>(400))+1;
+      bursts[i]->spacing = int(spacingCoef * fp_t<int, 0>(400))+5;
       bursts[i]->Reset();
     }
   }
+  if(analogTrig.HasFallen()) {
+    for(int i=0; i<NUM_GATES; i++) {
+      bursts[i]->End();
+    }
+  }
   for(int i=0; i<NUM_GATES; i++) {
-    bursts[i]->Process();
+    bursts[i]->Process(spacingCoef);
   }
   return true;
 }
@@ -183,7 +235,7 @@ void setup() {
     int pin = gatePins[i];
     gpio_init(pin);
     gpio_set_dir(pin, GPIO_OUT);
-    bursts[i] = new EvenBurst(i, i+1, 100);
+    bursts[i] = (Burst*)(new ContinuousBurst(i, i+1, 100));
   }
 
   Serial.begin(9600);
