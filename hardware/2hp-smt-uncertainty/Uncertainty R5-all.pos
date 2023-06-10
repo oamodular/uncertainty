@@ -1,0 +1,55 @@
+### Footprint positions - created on Sunday, March 19, 2023 at 05:02:01 PM ###
+### Printed by KiCad version (7.0.0-0)
+## Unit = mm, Angle = deg.
+## Side : All
+# Ref     Val                          Package                                                     PosX       PosY       Rot  Side
+C1        CAP_EEE-FT1E220AR            CAP_EEE-FT1E220AR                                        65.8243  -106.9974  -90.0000  top
+D1        SOD3715X145N                 Diode-1N5819HW-7-F_                                      49.1305   -23.1460  180.0000  top
+D2        SOD3715X145N                 Diode-1N5819HW-7-F_                                      45.3205   -23.6540   90.0000  top
+D3        SOD3715X145N                 Diode-1N5819HW-7-F_                                      71.9905  -107.6960  180.0000  top
+D4        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.4645   -35.3060   90.0000  top
+D5        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.7185   -46.2280   90.0000  top
+D6        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.7185   -57.4040   90.0000  top
+D7        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.7185   -68.8340   90.0000  top
+D8        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.9725   -80.0100   90.0000  top
+D9        APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.9725   -91.1860   90.0000  top
+D10       APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.9725  -102.8700   90.0000  top
+D11       APPA3010SURCK                LED-SMD_Red_SideEmit_Angle30_3x1mm_-APPA3010SURCK        54.9725  -114.0460   90.0000  top
+H1        Wurth_7466303_               Hardware-Right_angle_SMT_mounting_block-Wurth_7466303    40.9372   -23.7003    0.0000  top
+H2        Wurth_7466303_               Hardware-Right_angle_SMT_mounting_block-Wurth_7466303    40.9274  -128.1311    0.0000  top
+J1        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4701   -29.7522    0.0000  top
+J2        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4012   -40.8698    0.0000  top
+J3        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4285   -52.2560    0.0000  top
+J4        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4278   -63.4201    0.0000  top
+J5        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4135   -74.6540    0.0000  top
+J6        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4653   -85.8739    0.0000  top
+J7        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4535   -97.2263    0.0000  top
+J8        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4344  -108.5961    0.0000  top
+J9        SWITCHCRAFT_35RASMT2AHNTRX   SWITCHCRAFT_35RASMT2AHNTRX                               37.4366  -119.8500    0.0000  top
+J10       SAMTEC_TSM-103-01-L-SH       SAMTEC_TSM-103-01-L-SH                                   72.8187   -66.0778  -90.0000  top
+PS1       SAMTEC_TSM-105-01-L-DH       SAMTEC_TSM-105-01-L-DH                                   71.5699  -121.4947  -90.0000  top
+R1        In_Resist-ERJ-2RKF1003X      In_Resist-ERJ-2RKF1003X                                  54.2105   -23.9080   90.0000  top
+R2        In_Resist-ERJ-2RKF1003X      In_Resist-ERJ-2RKF1003X                                  52.1785   -25.4320  -90.0000  top
+R3        In_Resist-ERJ-2RKF1003X      In_Resist-ERJ-2RKF1003X                                  55.2265   -31.5280    0.0000  top
+R4        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              58.5285   -46.2280  -90.0000  top
+R5        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              59.0365   -54.1020  -90.0000  top
+R6        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              58.0205   -65.2780  -90.0000  top
+R7        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              59.5445   -81.7880    0.0000  top
+R8        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              58.7825   -88.6460  -90.0000  top
+R9        Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              59.0365   -98.2610  -90.0000  top
+R10       Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              58.7825  -108.9290  -90.0000  top
+R11       Out_Resist-RES_ERJPA3D1001V  Out_Resist-RES_ERJPA3D1001V                              57.7665  -122.9680  -90.0000  top
+R12       RESC1608X50N                 RESC1608X50N                                             55.7345   -41.1760  -90.0000  top
+R13       RESC1608X50N                 RESC1608X50N                                             58.5285   -49.7840  -90.0000  top
+R14       RESC1608X50N                 RESC1608X50N                                             56.4965   -62.2300  -90.0000  top
+R15       RESC1608X50N                 RESC1608X50N                                             56.7225   -74.1680    0.0000  top
+R16       RESC1608X50N                 RESC1608X50N                                             57.2585   -85.0900  -90.0000  top
+R17       RESC1608X50N                 RESC1608X50N                                             58.7825   -94.4880  -90.0000  top
+R18       RESC1608X50N                 RESC1608X50N                                             58.7825  -104.9020  -90.0000  top
+R19       RESC1608X50N                 RESC1608X50N                                             58.7825  -112.7760  -90.0000  top
+U1        VREG_LM1117IMPX-3.3/NOPB     VREG_LM1117IMPX-3.3_NOPB                                 65.9489   -74.4220   90.0000  top
+U2        VREG_L7805CDT-TR             VREG_L7805CDT-TR                                         71.0711   -98.1873    0.0000  top
+U3        SN74HCS125QDRQ1_             Quad_Bus-SMD_SN74HCS125QDRQ1                             65.3865   -87.4080    0.0000  top
+U4        SN74HCS125QDRQ1_             Quad_Bus-SMD_SN74HCS125QDRQ1                             65.3865   -51.8480    0.0000  top
+U5        XIAO-RP2040                  XIAO-RP2040                                              59.2905   -43.3170    0.0000  top
+## End
