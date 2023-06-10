@@ -1,3 +1,9 @@
+# *Uncertainty is now OSHW! both the software and the hardware!*
+
+This readme needs to be updated to reflect this and to talk about the many other languages that people have used to create new firmware for Uncertainty. Right now I just want to say that the 4hp DIY version of Uncertainty is still a work in progress. It's been built, but we're in the process of trying to figure out why it doesn't work. The 2hp SMT version of Uncertainty is the one that we sell [here](https://oamodular.org/products/uncertainty).
+
+What remains below is the previous readme. It contains the pinout for Uncertainty's Seeeduino Xiao RP2040 and some example Python code…
+
 # Hack Uncertainty for fun and profit
 
 Uncertainty's firmware is open-source and easy to swap with a humble USB-C cable. You can write your own firmware in C++, MicroPython, CircuitPython, and probably a bunch of other languages. It's startlingly easy to work and this document will outline the whole deal. Let's go…
