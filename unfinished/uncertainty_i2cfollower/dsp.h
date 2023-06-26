@@ -10,12 +10,18 @@ public:
   bool reset;
   Phasor() {
     this->phase = 0;
-    this->delta = SAMPLE_DELTA;
+    this->delta = 0;
     this->reset = true;
   }
   Phasor(int freq) {
     this->phase = 0;
     this->SetFreq(freq);
+  }
+  void Reset() {
+    phase = 0;
+  }
+  bool Running() {
+    return delta > 0;
   }
   void SetFreq(int freq) {
     this->delta = SAMPLE_DELTA*freq;
@@ -37,6 +43,38 @@ public:
       }
     }
     return out >> (31-7); // output 0 - 127 inclusive
+  }
+};
+
+class Osc : public Phasor {
+public:
+  int type = 0;
+  int width = 64;
+  //Osc(fp_signed freq) : Phasor(freq) {}
+  int Process() {
+    int out = phase;
+    phase += delta;
+    if(phase >= SINDEX_MAX) {
+      if(reset) {
+        while(phase >= SINDEX_MAX) phase -= SINDEX_MAX;
+      } else {
+        phase = SINDEX_MAX;
+      }
+    }
+    out = out >> (31-8); // output 0 - 255 inclusive
+    switch(type) {
+      case 2:
+        out = out < width ? 127 : 0;
+        break;
+      case 1:
+        out = abs(out - 128);
+        break;
+      case 0:
+        out = out >> 1;
+      default:
+        break;
+    }
+    return out;
   }
 };
 

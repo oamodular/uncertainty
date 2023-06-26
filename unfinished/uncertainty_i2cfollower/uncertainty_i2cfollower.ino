@@ -27,6 +27,7 @@ class AnalogOut {
 public:
   TrigGen trig;
   Env env;
+  Osc osc;
   uint16_t res;
   uint pin;
   int dc;
@@ -48,7 +49,9 @@ public:
     dc = x;
   }
   void Process() {
-    pwm_set_gpio_level(pin, max(max(dc, trig.Process()), env.Process()));
+    int oscOut = osc.delta == 0 ? 127 : osc.Process();
+    int envTrigDC = max(max(dc, trig.Process()), env.Process());
+    pwm_set_gpio_level(pin, (oscOut * envTrigDC) >> 7);
   }
 };
 
@@ -61,6 +64,8 @@ typedef enum {
   CMD_SET,
   CMD_PULSE,
   CMD_ENV,
+  CMD_LFO,
+  CMD_OSC,
   CMD_LAST
 } command_t;
 
@@ -79,6 +84,10 @@ void i2c_receive(int bytes_count) {     // bytes_count gives number of bytes in 
   int commandType = i2cdata.command / 8;
   int commandOutput = i2cdata.command % 8;
   int numParams = max(0, (bytes_count - 1) / 2);
+  Serial.println(commandType);
+  Serial.println(commandOutput);
+  Serial.println(bytes_count);
+  Serial.println("");
   switch(commandType) {
     case CMD_SET:
       outputs[commandOutput]->trig.Reset();
@@ -90,6 +99,22 @@ void i2c_receive(int bytes_count) {     // bytes_count gives number of bytes in 
       if(numParams > 0) outputs[commandOutput]->env.attack.SetDuration(i2cdata.values[0]);
       if(numParams > 1) outputs[commandOutput]->env.decay.SetDuration(i2cdata.values[1]);
       outputs[commandOutput]->env.Reset();
+      break;
+    case CMD_LFO:
+      if(numParams < 1) outputs[commandOutput]->osc.phase = 0;
+      if(numParams > 0) {
+        Serial.println(i2cdata.values[0]);
+        outputs[commandOutput]->osc.SetDuration(i2cdata.values[0]);
+      }
+      if(numParams > 1) outputs[commandOutput]->osc.type = i2cdata.values[1];
+      break;
+    case CMD_OSC:
+      if(numParams < 1) {outputs[commandOutput]->osc.phase = 0; Serial.println("RESET");}
+      if(numParams > 0) {
+        Serial.println(i2cdata.values[0]);
+        outputs[commandOutput]->osc.SetFreq(i2cdata.values[0]);
+      }
+      if(numParams > 1) outputs[commandOutput]->osc.type = i2cdata.values[1];
       break;
     default:
       break;
@@ -116,6 +141,8 @@ void setup() {
   for(int i=0; i<8; i++) {
     outputs[i] = new AnalogOut(gatePins[i], 127);
   }
+
+  Serial.begin(9600);
   
   Wire1.setSDA(6);
   Wire1.setSCL(7);
