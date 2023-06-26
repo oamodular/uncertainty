@@ -27,7 +27,11 @@ public:
     this->delta = SAMPLE_DELTA*freq;
   }
   void SetDuration(int ms) {
-    this->delta = (SAMPLE_DELTA*1000)/ms;
+    if(ms < 1) {
+      this->delta = 0;
+    } else {
+      this->delta = (SAMPLE_DELTA*1000)/ms;
+    }
   }
   bool IsAtEnd() {
     return phase >= SINDEX_MAX;
@@ -49,7 +53,7 @@ public:
 class Osc : public Phasor {
 public:
   int type = 0;
-  int width = 64;
+  int width = 128;
   //Osc(fp_signed freq) : Phasor(freq) {}
   int Process() {
     int out = phase;
@@ -117,5 +121,32 @@ public:
   int Process() {
     samplesSinceFired++;    
     return (samplesSinceFired < width) ? amp : 0;
+  }
+};
+
+class SlewedDC {
+public:
+  Phasor phasor;
+  int lastVal;
+  int from;
+  int to;
+  SlewedDC() {
+    phasor.reset = false;
+    lastVal = 0;
+    from = 0;
+    to = 0;
+  }
+  void Set(int x) {
+    from = lastVal;
+    to = x;
+    phasor.phase = 0;
+  }
+  void SetSlew(int ms) {
+    phasor.SetDuration(ms);
+  }
+  int Process() {
+    int i = phasor.Process();
+    lastVal = phasor.delta == 0 ? to : ((from*(127-i))>>7) + ((to*i)>>7);
+    return lastVal;
   }
 };
