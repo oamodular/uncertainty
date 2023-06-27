@@ -107,8 +107,12 @@ void i2c_receive(int bytes_count) {     // bytes_count gives number of bytes in 
       break;
     case CMD_OSC:
       if(numParams < 1) outputs[commandOutput]->osc.phase = 0;
-      if(numParams > 0) outputs[commandOutput]->osc.SetFreq(i2cdata.values[0]);
-      if(numParams > 1) outputs[commandOutput]->osc.type = i2cdata.values[1];
+      if(numParams == 1) outputs[commandOutput]->osc.SetNote(i2cdata.values[0]);
+      if(numParams == 2) {
+        outputs[commandOutput]->osc.SetNote(i2cdata.values[0]);
+        outputs[commandOutput]->osc.type = i2cdata.values[1];
+      }
+      if(numParams == 3) outputs[commandOutput]->osc.SetNote(i2cdata.values[0], i2cdata.values[1], i2cdata.values[2]);
       break;
     default:
       break;
