@@ -11,7 +11,4 @@ Unless otherwise noted, this project is licensed under Creative
    (CC BY-SA 4.0). Full text available at
    https://creativecommons.org/licenses/by-sa/4.0/
 
-Olivia Artz Modular's logo and branding is used throughout this project. This 
-branding is Copyright (c) Olivia Artz Modular 2023 and all rights are reserved. 
-You may not distribute derivative works or products bearing the Olivia Artz 
-Modular logo. Derivative works should remove Olivia Artz Modular branding.
+Olivia Artz Modular's logo, branding, and design is used throughout this project. This branding and design work is Copyright (c) Olivia Artz Modular 2023 and all rights are reserved. You may not distribute derivative works or products bearing the Olivia Artz Modular logo. Derivative works should remove Olivia Artz Modular branding and design.
