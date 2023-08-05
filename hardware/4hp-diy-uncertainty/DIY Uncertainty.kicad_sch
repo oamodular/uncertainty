@@ -1484,12 +1484,12 @@
         )
       )
       (symbol "LM1117MP-3.3_1_1"
-        (pin power_in line (at 0 -7.62 90) (length 2.54)
-          (name "GND" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
         (pin power_out line (at 7.62 0 180) (length 2.54)
           (name "VO" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at 0 -7.62 90) (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
         )
         (pin power_in line (at -7.62 0 0) (length 2.54)
@@ -1863,10 +1863,6 @@
     (stroke (width 0) (type default))
     (uuid 058970b3-0a0a-461e-a9e9-089952e43b80)
   )
-  (wire (pts (xy 181.5241 68.0117) (xy 179.07 68.0117))
-    (stroke (width 0) (type default))
-    (uuid 05b2013a-668a-490e-8a87-0ac769628e0d)
-  )
   (wire (pts (xy 69.85 142.24) (xy 69.85 163.83))
     (stroke (width 0) (type default))
     (uuid 0656ca2f-aa07-433b-a111-00cca53a7f76)
@@ -1879,10 +1875,6 @@
     (stroke (width 0) (type default))
     (uuid 06a62af1-a4de-48bf-b712-746b9190e453)
   )
-  (wire (pts (xy 181.5241 68.0117) (xy 181.5241 48.26))
-    (stroke (width 0) (type default))
-    (uuid 085bae28-c19a-471f-9ef7-1c21a78040aa)
-  )
   (wire (pts (xy 87.5983 72.9218) (xy 87.63 72.9218))
     (stroke (width 0) (type default))
     (uuid 0a17933c-3364-4e05-b4fd-6dc5db2945d8)
@@ -1894,14 +1886,6 @@
   (wire (pts (xy 199.395 132.08) (xy 199.395 143.5979))
     (stroke (width 0) (type default))
     (uuid 0c025a72-913a-4218-9267-87751c695700)
-  )
-  (wire (pts (xy 184.15 44.45) (xy 176.53 44.45))
-    (stroke (width 0) (type default))
-    (uuid 104db44a-4846-4834-b942-aca5747bc5dc)
-  )
-  (wire (pts (xy 176.53 59.8956) (xy 176.53 55.88))
-    (stroke (width 0) (type default))
-    (uuid 10d0f6d2-13a8-4bfc-a1a7-f3a34ff2169a)
   )
   (wire (pts (xy 179.07 113.03) (xy 179.07 128.27))
     (stroke (width 0) (type default))
@@ -1951,9 +1935,9 @@
     (stroke (width 0) (type default))
     (uuid 24467e64-562f-4ca9-af59-100c318ccfcc)
   )
-  (wire (pts (xy 179.07 68.0117) (xy 179.07 77.47))
+  (wire (pts (xy 187.96 44.45) (xy 176.53 44.45))
     (stroke (width 0) (type default))
-    (uuid 24833b43-7b4e-4488-9684-c4c55f16ccee)
+    (uuid 24b3b29c-0d3e-41e6-a6da-9d7d56ab396f)
   )
   (wire (pts (xy 254 54.61) (xy 254 77.47))
     (stroke (width 0) (type default))
@@ -1982,10 +1966,6 @@
   (wire (pts (xy 92.7084 74.93) (xy 92.71 74.93))
     (stroke (width 0) (type default))
     (uuid 3204aeee-26d3-4432-a18c-8db49aadcd15)
-  )
-  (wire (pts (xy 179.07 66.3787) (xy 173.9425 66.3787))
-    (stroke (width 0) (type default))
-    (uuid 32c873ba-b846-4dd3-9f56-0dbc2ea50379)
   )
   (wire (pts (xy 29.21 137.16) (xy 29.21 163.83))
     (stroke (width 0) (type default))
@@ -2027,13 +2007,17 @@
     (stroke (width 0) (type default))
     (uuid 401138f9-db2f-4f94-a62b-0b99c27df219)
   )
-  (wire (pts (xy 168.9044 67.5156) (xy 168.91 67.5156))
+  (wire (pts (xy 181.61 48.26) (xy 176.53 48.26))
     (stroke (width 0) (type default))
-    (uuid 4499c89a-3b77-400c-af32-20adb15b8075)
+    (uuid 462cdae0-e67d-4c3f-aa54-0a2a30b67b67)
   )
   (wire (pts (xy 29.21 163.83) (xy 33.02 163.83))
     (stroke (width 0) (type default))
     (uuid 477f171c-ec05-4496-9ef8-3a9dfc5e9dd1)
+  )
+  (wire (pts (xy 181.61 66.04) (xy 181.61 48.26))
+    (stroke (width 0) (type default))
+    (uuid 4880556a-c74f-4ce2-a2b5-2dcf82340316)
   )
   (wire (pts (xy 25.4 27.94) (xy 25.4 30.48))
     (stroke (width 0) (type default))
@@ -2046,10 +2030,6 @@
   (wire (pts (xy 226.06 146.05) (xy 226.06 128.27))
     (stroke (width 0) (type default))
     (uuid 4cb331ce-cbdc-4aa3-946f-1beb268ba451)
-  )
-  (wire (pts (xy 176.5244 64.8481) (xy 168.9044 64.8481))
-    (stroke (width 0) (type default))
-    (uuid 4f26a093-25a2-4909-b40d-c66f2f3326c7)
   )
   (wire (pts (xy 95.25 110.49) (xy 95.25 132.08))
     (stroke (width 0) (type default))
@@ -2079,10 +2059,6 @@
     (stroke (width 0) (type default))
     (uuid 552cf618-3530-4d6a-b5aa-053c0df3ee21)
   )
-  (wire (pts (xy 181.5241 48.26) (xy 176.53 48.26))
-    (stroke (width 0) (type default))
-    (uuid 5684d0be-bf98-40cf-8cba-0ccc9682e543)
-  )
   (wire (pts (xy 29.21 121.92) (xy 87.63 121.92))
     (stroke (width 0) (type default))
     (uuid 56915e7f-026f-4fcd-829d-926553b1272c)
@@ -2099,10 +2075,6 @@
     (stroke (width 0) (type default))
     (uuid 5a6d3585-9186-4134-b7da-fe4f2bcdaaf0)
   )
-  (wire (pts (xy 168.9044 64.8481) (xy 168.9044 67.5156))
-    (stroke (width 0) (type default))
-    (uuid 5ab8baf8-0101-4057-87bb-64ebeffeca74)
-  )
   (wire (pts (xy 58.42 153.67) (xy 55.88 153.67))
     (stroke (width 0) (type default))
     (uuid 5ad0f58e-7e45-4241-855f-1d3fa2a64582)
@@ -2110,6 +2082,10 @@
   (wire (pts (xy 236.22 140.97) (xy 236.22 163.83))
     (stroke (width 0) (type default))
     (uuid 5cefb1d3-b97a-4d85-ba02-925748578d46)
+  )
+  (wire (pts (xy 173.99 66.04) (xy 181.61 66.04))
+    (stroke (width 0) (type default))
+    (uuid 6087ce45-cb99-4185-9800-abcf9ec93b0c)
   )
   (wire (pts (xy 181.61 113.03) (xy 181.61 125.73))
     (stroke (width 0) (type default))
@@ -2119,21 +2095,25 @@
     (stroke (width 0) (type default))
     (uuid 60f46292-dab9-4491-b8f2-690663f0b02c)
   )
-  (wire (pts (xy 168.91 67.5156) (xy 168.91 77.47))
+  (wire (pts (xy 184.15 77.47) (xy 184.15 55.88))
     (stroke (width 0) (type default))
-    (uuid 65c7f7ce-eb71-4742-b991-229b48016cd5)
+    (uuid 639fc9ff-9dfb-43cb-93d3-f4fb078b4153)
   )
   (wire (pts (xy 179.07 128.27) (xy 213.36 128.27))
     (stroke (width 0) (type default))
     (uuid 698ed497-9928-4cf6-ae34-e3c63f374cea)
   )
-  (wire (pts (xy 176.5244 64.8481) (xy 176.5244 59.8956))
-    (stroke (width 0) (type default))
-    (uuid 69e73006-6913-4322-8856-facac00ff958)
-  )
   (wire (pts (xy 236.22 54.61) (xy 236.22 55.88))
     (stroke (width 0) (type default))
     (uuid 6d42792b-fe07-4e17-bf42-7c8b89096638)
+  )
+  (wire (pts (xy 184.15 55.88) (xy 176.53 55.88))
+    (stroke (width 0) (type default))
+    (uuid 6dd2c870-d72f-41ba-b565-0d863d4b7a3d)
+  )
+  (wire (pts (xy 173.99 66.04) (xy 173.99 77.47))
+    (stroke (width 0) (type default))
+    (uuid 705cce43-acc3-4526-b2e5-74a59099b402)
   )
   (wire (pts (xy 248.92 77.47) (xy 248.92 80.01))
     (stroke (width 0) (type default))
@@ -2171,10 +2151,6 @@
     (stroke (width 0) (type default))
     (uuid 81c1a340-b446-4973-9baa-73c2c53fd843)
   )
-  (wire (pts (xy 179.07 66.3787) (xy 179.07 52.07))
-    (stroke (width 0) (type default))
-    (uuid 82c5b13c-0f71-4e80-b9e2-9f9adaddac22)
-  )
   (wire (pts (xy 248.92 74.93) (xy 248.92 77.47))
     (stroke (width 0) (type default))
     (uuid 837e3e9f-91d3-4a14-a883-743199bcb32a)
@@ -2206,10 +2182,6 @@
   (wire (pts (xy 251.46 125.73) (xy 236.22 125.73))
     (stroke (width 0) (type default))
     (uuid 93acc162-faae-4ba8-874c-0905d2ae1cbe)
-  )
-  (wire (pts (xy 173.99 68.9187) (xy 173.99 77.47))
-    (stroke (width 0) (type default))
-    (uuid 96f78b16-2c8d-426d-b3d1-49177b058c37)
   )
   (wire (pts (xy 215.9 163.83) (xy 236.22 163.83))
     (stroke (width 0) (type default))
@@ -2243,9 +2215,9 @@
     (stroke (width 0) (type default))
     (uuid 9ff6b061-e29c-4666-b489-39bb9db18df7)
   )
-  (wire (pts (xy 173.9425 68.9187) (xy 173.99 68.9187))
+  (wire (pts (xy 168.91 68.58) (xy 187.96 68.58))
     (stroke (width 0) (type default))
-    (uuid a0d4ab34-8386-4171-8ea4-fe0fc8027bc5)
+    (uuid a4ce97be-3a34-419e-bfee-b3f3d4486112)
   )
   (wire (pts (xy 187.96 132.08) (xy 199.395 132.08))
     (stroke (width 0) (type default))
@@ -2255,13 +2227,13 @@
     (stroke (width 0) (type default))
     (uuid ab438829-e20b-4109-91b2-72fe19fafb11)
   )
-  (wire (pts (xy 173.9425 66.3787) (xy 173.9425 68.9187))
-    (stroke (width 0) (type default))
-    (uuid b041742f-8331-4a29-b35b-fe06bd152f6e)
-  )
   (wire (pts (xy 25.4 22.86) (xy 25.4 25.4))
     (stroke (width 0) (type default))
     (uuid b179cc27-b2ed-46f3-abb8-7dd31cef0262)
+  )
+  (wire (pts (xy 187.96 68.58) (xy 187.96 44.45))
+    (stroke (width 0) (type default))
+    (uuid b37ab7aa-4f1e-4632-bfd0-14d1d77d43ed)
   )
   (wire (pts (xy 76.2 153.67) (xy 76.2 163.83))
     (stroke (width 0) (type default))
@@ -2275,13 +2247,13 @@
     (stroke (width 0) (type default))
     (uuid b9756ada-562c-4a51-b464-8679a2ca722b)
   )
+  (wire (pts (xy 179.07 52.07) (xy 179.07 77.47))
+    (stroke (width 0) (type default))
+    (uuid ba569b5e-df12-42fa-b0d4-c0cba3db8531)
+  )
   (wire (pts (xy 80.01 36.83) (xy 80.01 74.93))
     (stroke (width 0) (type default))
     (uuid c3230e80-c16f-464f-8bef-6e88c8ccf861)
-  )
-  (wire (pts (xy 176.5244 59.8956) (xy 176.53 59.8956))
-    (stroke (width 0) (type default))
-    (uuid c57a27db-cc34-4140-8f85-0cc4dddd48dd)
   )
   (wire (pts (xy 248.92 77.47) (xy 254 77.47))
     (stroke (width 0) (type default))
@@ -2335,6 +2307,10 @@
     (stroke (width 0) (type default))
     (uuid d64957b4-5859-4634-a4fe-00752f268ba6)
   )
+  (wire (pts (xy 168.91 77.47) (xy 168.91 68.58))
+    (stroke (width 0) (type default))
+    (uuid d7978fa9-5a60-47fe-bc4c-a6dfc2be1f1f)
+  )
   (wire (pts (xy 215.9 163.83) (xy 213.36 163.83))
     (stroke (width 0) (type default))
     (uuid d9982661-e7be-46dd-88bb-617a0da4c223)
@@ -2375,17 +2351,9 @@
     (stroke (width 0) (type default))
     (uuid e2f30d76-1967-4b06-9e4a-063f256db52b)
   )
-  (wire (pts (xy 179.07 52.07) (xy 176.53 52.07))
-    (stroke (width 0) (type default))
-    (uuid e324cb93-151f-42a5-8dd3-27a91184bd04)
-  )
   (wire (pts (xy 254 39.37) (xy 243.84 39.37))
     (stroke (width 0) (type default))
     (uuid e61d42de-30a2-4dd5-aa34-91b61c560206)
-  )
-  (wire (pts (xy 184.15 77.47) (xy 184.15 44.45))
-    (stroke (width 0) (type default))
-    (uuid e70d19ad-7fa5-45c2-a215-7723b98ab378)
   )
   (wire (pts (xy 199.395 151.2179) (xy 199.395 152.4))
     (stroke (width 0) (type default))
@@ -2394,6 +2362,10 @@
   (wire (pts (xy 69.8488 110.49) (xy 69.8488 112.9835))
     (stroke (width 0) (type default))
     (uuid e9465c79-d66d-41a5-9283-1581f7516122)
+  )
+  (wire (pts (xy 179.07 52.07) (xy 176.53 52.07))
+    (stroke (width 0) (type default))
+    (uuid eb079fc2-7e1c-410f-8e54-48095b30028a)
   )
   (wire (pts (xy 271.78 146.05) (xy 271.78 123.19))
     (stroke (width 0) (type default))
@@ -2455,7 +2427,7 @@
     (pin "2" (uuid 5f582f63-a092-4c9e-88ba-ffc36239d9af))
     (pin "3" (uuid 24006f70-e610-4909-9e22-63c14d14c859))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J9") (unit 1)
         )
@@ -2483,11 +2455,11 @@
     (property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm1117.pdf" (at 254 38.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 08bf78a5-801e-4c43-b713-0a386efd042b))
     (pin "2" (uuid 0c8b5a6d-c3be-4b1b-bd9a-7d8359169e4e))
+    (pin "1" (uuid 08bf78a5-801e-4c43-b713-0a386efd042b))
     (pin "3" (uuid a76b06d1-eb00-4443-879e-e1d21fd6be0e))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "U4") (unit 1)
         )
@@ -2517,7 +2489,7 @@
     )
     (pin "1" (uuid 5cc01071-8684-4d9b-af5a-bd22fe2607e8))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR04") (unit 1)
         )
@@ -2543,7 +2515,7 @@
     (pin "1" (uuid 0f6722d1-241d-4d9d-b855-d93e3956dcdc))
     (pin "2" (uuid c49d191f-2703-4bb9-b127-ef4250c80e1f))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R13") (unit 1)
         )
@@ -2574,7 +2546,7 @@
     (pin "1" (uuid 9c5a25c7-8c54-4b24-b1ce-bc8b82741065))
     (pin "2" (uuid 627a4f5f-1239-4989-b092-94a49306d186))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D7") (unit 1)
         )
@@ -2605,7 +2577,7 @@
     (pin "1" (uuid 81c0dac8-fbed-4965-81a9-46d31ef486c0))
     (pin "2" (uuid 97c064c9-14c7-4784-a4af-098675fb0700))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R7") (unit 1)
         )
@@ -2637,7 +2609,7 @@
     (pin "2" (uuid 2668198c-ae39-448f-8385-ae4f94f55b35))
     (pin "3" (uuid 5484b798-d7f1-45e3-8798-79e448a17103))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "U3") (unit 1)
         )
@@ -2668,7 +2640,7 @@
     (pin "1" (uuid 1c29b4ce-5b55-4e4f-8f5e-ab74ba413a68))
     (pin "2" (uuid 6c7ada8d-b812-4886-91d9-b0863d764646))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D6") (unit 1)
         )
@@ -2711,7 +2683,7 @@
     (pin "8" (uuid 74bec57c-5b15-49f7-9061-ea701652c90d))
     (pin "9" (uuid 7312222c-8102-47c6-bf59-09e528ac9813))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "U5") (unit 1)
         )
@@ -2737,7 +2709,7 @@
     (pin "1" (uuid 9b79d195-c11b-46b7-bdf4-a392f5151f61))
     (pin "2" (uuid 97537525-391b-4905-b9fa-7bfe6c6d2524))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R15") (unit 1)
         )
@@ -2767,7 +2739,7 @@
     )
     (pin "1" (uuid c699835d-5568-42bf-ac4a-6b1770a8e7d9))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR016") (unit 1)
         )
@@ -2792,7 +2764,7 @@
     )
     (pin "1" (uuid 2e1f6f52-0d5c-49b1-8457-e3d1d2fe6609))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR022") (unit 1)
         )
@@ -2818,7 +2790,7 @@
     (pin "1" (uuid e712d06c-44a9-4081-887c-580ecfc74a3d))
     (pin "2" (uuid 5407b348-d172-4d22-a9fd-0cd15a31433a))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R3") (unit 1)
         )
@@ -2849,7 +2821,7 @@
     (pin "1" (uuid 63b1f311-8630-4832-85ab-d3c921334d87))
     (pin "2" (uuid 7973a079-71dd-42c8-a5e2-2bd32c8b57b7))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R4") (unit 1)
         )
@@ -2880,7 +2852,7 @@
     (pin "1" (uuid 4ca492fc-5c4c-4962-b0c4-262edfd3823c))
     (pin "2" (uuid ce157a11-1d5c-4ba1-bdd1-f34be1038e68))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R6") (unit 1)
         )
@@ -2912,7 +2884,7 @@
     (pin "2" (uuid 26d8eb43-644b-48e2-9790-540c567f68c2))
     (pin "3" (uuid b8eb8d7e-7ace-40f7-afa0-a4ced0c29525))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J5") (unit 1)
         )
@@ -2942,7 +2914,7 @@
     )
     (pin "1" (uuid a26f4833-a965-49ab-98e1-e4619c0bb82c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR021") (unit 1)
         )
@@ -2967,7 +2939,7 @@
     )
     (pin "1" (uuid 4d23d1e2-9e92-4674-80a6-99bc6fa9c269))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR07") (unit 1)
         )
@@ -2993,7 +2965,7 @@
     (pin "1" (uuid d7a1720e-cc38-48a3-984d-9de4a83709bd))
     (pin "2" (uuid ce37de32-7b85-400c-8d9c-3e94a72b4898))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D9") (unit 1)
         )
@@ -3025,7 +2997,7 @@
     (pin "2" (uuid de41f253-a7f3-41f4-b886-77001e825455))
     (pin "3" (uuid cecaea39-3c22-49bf-b3cd-c9497c7d131c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J1") (unit 1)
         )
@@ -3056,7 +3028,7 @@
     (pin "1" (uuid ac48683a-37ec-4b48-af55-5d44a6298c5a))
     (pin "2" (uuid 4b706640-743c-4bc9-90aa-04c7fd4f98e2))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R1") (unit 1)
         )
@@ -3087,7 +3059,7 @@
     (pin "1" (uuid d3d71ddd-b836-49e0-8b78-48aa88ef94a0))
     (pin "2" (uuid eb5c96fa-6656-4955-aefa-adf7137583f4))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R11") (unit 1)
         )
@@ -3117,7 +3089,7 @@
     )
     (pin "1" (uuid dc2b2af4-7662-41be-86bc-ea62d52ad26c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR020") (unit 1)
         )
@@ -3143,7 +3115,7 @@
     (pin "1" (uuid 5c6cf285-c29f-47a0-8755-fcaefd9bcb44))
     (pin "2" (uuid c7d3067d-2d67-4979-b6be-ee55eaef95b1))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D2") (unit 1)
         )
@@ -3174,7 +3146,7 @@
     (pin "1" (uuid 922ff797-bd6a-415a-869b-0078387fca97))
     (pin "2" (uuid d8337245-ce0c-472d-b489-6f5ababb71c5))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D8") (unit 1)
         )
@@ -3205,7 +3177,7 @@
     (pin "1" (uuid bece0a0c-ce59-4306-b9fa-ba50e0c6a28c))
     (pin "2" (uuid 02e617ce-9221-4ee4-865c-9cc2f19b49a5))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R18") (unit 1)
         )
@@ -3236,7 +3208,7 @@
     (pin "1" (uuid 6f96622c-5b8c-431e-ae65-91214187da23))
     (pin "2" (uuid 4e88e2f1-6725-4bf6-8b67-ddfb06941b2a))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R5") (unit 1)
         )
@@ -3266,7 +3238,7 @@
     )
     (pin "1" (uuid 30340c10-18a3-439f-8502-0d9c1f445715))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR09") (unit 1)
         )
@@ -3298,7 +3270,7 @@
     (pin "2" (uuid d51570ca-334d-4dfe-8bb4-24665283f914))
     (pin "3" (uuid d0e819d8-9b31-4a5e-bbd8-1b671d837a3a))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J2") (unit 1)
         )
@@ -3328,7 +3300,7 @@
     )
     (pin "1" (uuid 40980cf4-7cb5-4a65-b14a-2a25324caf32))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR02") (unit 1)
         )
@@ -3359,7 +3331,7 @@
     (pin "1" (uuid 65039244-5297-4371-8353-c0ddb170039c))
     (pin "2" (uuid f8375a01-6031-4d35-a40b-8f6f7c94fd41))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D5") (unit 1)
         )
@@ -3389,7 +3361,7 @@
     )
     (pin "1" (uuid 608b508d-ba65-43d7-9d4f-f36d1ef8aeb2))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR08") (unit 1)
         )
@@ -3419,7 +3391,7 @@
     )
     (pin "1" (uuid dd5340cc-dbf3-485f-8b53-66c2e2be539a))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR012") (unit 1)
         )
@@ -3444,7 +3416,7 @@
     )
     (pin "1" (uuid 8719133e-1eeb-48e1-9065-a2fe549186ed))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR014") (unit 1)
         )
@@ -3470,7 +3442,7 @@
     (pin "1" (uuid f88951dc-b762-4aea-8070-94c298f84434))
     (pin "2" (uuid 108967c4-866d-4ee9-9a96-f2279ace0f2b))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D10") (unit 1)
         )
@@ -3500,7 +3472,7 @@
     )
     (pin "1" (uuid 13ec6188-bd12-4a45-b9e0-5f49083cfc44))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR017") (unit 1)
         )
@@ -3526,7 +3498,7 @@
     (pin "1" (uuid bd3b8dec-b431-48d1-9f4d-8c6e16632679))
     (pin "2" (uuid 9b0d27c0-f499-4e2b-aad5-3f071e6a2a66))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R2") (unit 1)
         )
@@ -3557,7 +3529,7 @@
     (pin "1" (uuid b8bb76c4-19ef-4b33-b177-7286c3d67832))
     (pin "2" (uuid 22d94023-0b0d-4b36-a7be-b149a09ca32c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R9") (unit 1)
         )
@@ -3588,7 +3560,7 @@
     (pin "1" (uuid fc74ab53-846b-4d2b-a2e8-7aee82b84e73))
     (pin "2" (uuid ad5849ba-794a-4c10-8d9f-af3970b96c84))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R8") (unit 1)
         )
@@ -3637,7 +3609,7 @@
     (pin "8" (uuid db463f91-e4c5-46dd-b698-65ff4dd4b50c))
     (pin "9" (uuid e13cad95-e44f-4169-8f35-255a8321cc71))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "U2") (unit 1)
         )
@@ -3668,7 +3640,7 @@
     (pin "1" (uuid 5f3f95cd-a8f2-42e1-bce8-a9e2f54b1ee1))
     (pin "2" (uuid 09a8a778-6879-4bde-9460-dc55914e7958))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D4") (unit 1)
         )
@@ -3698,7 +3670,7 @@
     )
     (pin "1" (uuid f2de1cc0-a829-4543-84d0-6756b86890ec))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR013") (unit 1)
         )
@@ -3723,7 +3695,7 @@
     )
     (pin "1" (uuid ff845bc2-def3-4693-b0be-42cf4f7f4d41))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR019") (unit 1)
         )
@@ -3748,7 +3720,7 @@
     )
     (pin "1" (uuid 729311f6-3593-4781-ad3e-39de5e075449))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR015") (unit 1)
         )
@@ -3773,7 +3745,7 @@
     )
     (pin "1" (uuid 47611a2b-461a-43ca-836f-30650c4a39b3))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR05") (unit 1)
         )
@@ -3803,7 +3775,7 @@
     )
     (pin "1" (uuid 37e92325-247f-4f37-b072-2db2e9f7565d))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR010") (unit 1)
         )
@@ -3835,7 +3807,7 @@
     (pin "2" (uuid 94d71f46-f95e-45d0-8346-d1618aec9771))
     (pin "3" (uuid f96a8584-3870-4e8c-9ef0-f548b18ae96c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J4") (unit 1)
         )
@@ -3866,7 +3838,7 @@
     (pin "1" (uuid 4c32c710-6def-4cad-81a5-15d1fbb4460f))
     (pin "2" (uuid 83ee6565-33a6-44d0-9ab3-4de560420a94))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R17") (unit 1)
         )
@@ -3909,7 +3881,7 @@
     (pin "8" (uuid f6c931f7-c8f2-4829-b9ee-09cc7c5ea3e4))
     (pin "9" (uuid bda8ca5f-f5be-4a58-b695-a7f7d2b770ae))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "U1") (unit 1)
         )
@@ -3935,7 +3907,7 @@
     (pin "1" (uuid 62f61d11-2d96-4311-8a28-69399e72ea98))
     (pin "2" (uuid f848ddee-bd91-43b5-a854-b0b9916ffb92))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R16") (unit 1)
         )
@@ -3965,7 +3937,7 @@
     )
     (pin "1" (uuid 3b549a3b-3a49-4bcd-bab0-be343ccc8134))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR01") (unit 1)
         )
@@ -3996,7 +3968,7 @@
     (pin "1" (uuid dfa578f2-50ec-4ac7-8eb0-39bd9b7b7a3b))
     (pin "2" (uuid 8f405749-c329-4fbb-8e65-732a3c3624b4))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D1") (unit 1)
         )
@@ -4027,7 +3999,7 @@
     (pin "1" (uuid ab6f33d4-8b9d-4dd4-ad0f-e3f2b01de6ed))
     (pin "2" (uuid 7f6ed5b1-a25c-4772-84da-b6ab9e256cf6))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R19") (unit 1)
         )
@@ -4057,7 +4029,7 @@
     )
     (pin "1" (uuid feb7406f-d1fa-49a4-b99e-ac748e15c494))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR018") (unit 1)
         )
@@ -4083,7 +4055,7 @@
     (pin "1" (uuid 01735ce5-33ae-43d7-8593-9184d56461cf))
     (pin "2" (uuid 20001955-9d39-4b0a-a896-11370a64ce33))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D3") (unit 1)
         )
@@ -4115,7 +4087,7 @@
     (pin "2" (uuid e1e9f53d-6bb0-48ce-a290-4125be6ec039))
     (pin "3" (uuid 524dd3c9-b64a-4c63-8a76-88d017b957c3))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J11") (unit 1)
         )
@@ -4145,7 +4117,7 @@
     )
     (pin "1" (uuid 4f51249e-1c99-4910-9316-a35104179e5c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR03") (unit 1)
         )
@@ -4176,7 +4148,7 @@
     (pin "1" (uuid e17db7a3-810e-4ca4-bfb8-b870080359aa))
     (pin "2" (uuid fb6fe5ce-9b5d-4c56-812a-ad6113d0616c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R14") (unit 1)
         )
@@ -4215,7 +4187,7 @@
     (pin "09" (uuid bdd19912-8d7e-4d78-8bce-d421445c6b65))
     (pin "10" (uuid b499b854-ee2d-4921-9cf5-36cb9879e2e5))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J10") (unit 1)
         )
@@ -4246,7 +4218,7 @@
     (pin "1" (uuid 559f705f-4438-4923-9ccf-6e088262610f))
     (pin "2" (uuid 54085311-fc42-413b-bdde-64ba17e3855e))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "D11") (unit 1)
         )
@@ -4277,7 +4249,7 @@
     (pin "1" (uuid 213404b0-ac48-46a8-8ce1-6bb2c1596171))
     (pin "2" (uuid f4f7c5a3-9d05-456c-a188-15b71bb23614))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R10") (unit 1)
         )
@@ -4308,7 +4280,7 @@
     (pin "1" (uuid fc4714a3-c8a2-47df-b71f-2b38913f2cb2))
     (pin "2" (uuid f3ef073d-c452-4df7-9315-f8ca7835133b))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "C1") (unit 1)
         )
@@ -4338,7 +4310,7 @@
     )
     (pin "1" (uuid e812c2aa-420d-4378-a39d-67c948832aee))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR011") (unit 1)
         )
@@ -4365,7 +4337,7 @@
     (pin "2" (uuid 8030a15d-94a4-423b-a4f7-ebf211c35e8b))
     (pin "3" (uuid 56c776dd-e5bf-4a1f-bc4a-5fcf2171a31c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J3") (unit 1)
         )
@@ -4397,7 +4369,7 @@
     (pin "2" (uuid 97cdcab6-18c8-429b-b546-1901356bb956))
     (pin "3" (uuid c2c3ed57-a52c-436e-b6d9-2944ac6d4622))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J7") (unit 1)
         )
@@ -4427,7 +4399,7 @@
     )
     (pin "1" (uuid e6d110b1-914f-4cc8-a46c-64826061f8fa))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR023") (unit 1)
         )
@@ -4452,7 +4424,7 @@
     )
     (pin "1" (uuid fa1d6cc9-9769-4207-a60c-c8d1c8f18e88))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR06") (unit 1)
         )
@@ -4478,7 +4450,7 @@
     (pin "1" (uuid 25cb7337-14fd-42b1-b91e-a7f1ab0f0981))
     (pin "2" (uuid d751ebda-caf2-4dcd-a11a-f7db120a2ef5))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "R12") (unit 1)
         )
@@ -4510,7 +4482,7 @@
     (pin "2" (uuid bd3ea1de-ba98-4d12-b2c1-245ebfd8864f))
     (pin "3" (uuid 2c32faf6-f9a0-41e5-ab52-1199f76d1d0c))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J6") (unit 1)
         )
@@ -4542,7 +4514,7 @@
     (pin "2" (uuid 9c582ce6-15b9-4cf9-b303-2e68df31b8cf))
     (pin "3" (uuid 05dacf26-8ac4-48c0-9552-44b677821e83))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "J8") (unit 1)
         )
@@ -4572,7 +4544,7 @@
     )
     (pin "1" (uuid c1712b69-3ca2-4358-8e97-c107be2ed1f8))
     (instances
-      (project "DIY Uncertainty"
+      (project "DIY Uncertainty R2"
         (path "/097d508e-b81e-41c5-8a8b-ea81ea96585d"
           (reference "#PWR024") (unit 1)
         )
