@@ -1,0 +1,1 @@
+Right now, the default (and shipping) fw are the two in the c++ directory. The plan is to move to circuitpython because we think it’ll be the easiest for people to work with.
