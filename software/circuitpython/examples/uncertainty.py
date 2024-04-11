@@ -1,3 +1,5 @@
+# this is just like a a stub. there's now code yet. like TODO: write code
+
 import time
 import board
 import digitalio
