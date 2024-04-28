@@ -1,16 +1,10 @@
-# this is just like a a stub. there's now code yet. like TODO: write code
+prob = [99,91,67,50,33,13,5,1]
 
 import time
 import board
 import digitalio
 from analogio import AnalogIn
-import usb_midi
-import adafruit_midi
-from adafruit_midi.note_on import NoteOn
-from adafruit_midi.note_off import NoteOff
-from adafruit_midi.control_change import ControlChange
-from adafruit_midi.pitch_bend import PitchBend
-
+import random
 
 cv_in = AnalogIn(board.A0)
 gates = [
@@ -27,12 +21,18 @@ gates = [
 for gate in gates:
     gate.direction = digitalio.Direction.OUTPUT
 
-midi = adafruit_midi.MIDI(
-    midi_in=usb_midi.ports[0],
-    midi_out=usb_midi.ports[1],
-    in_channel=0,
-    out_channel=0,
-    debug=False,
-)
+high_thresh = 40000
+low_thresh = 38000
+current_gate = 0
 
 while True:
+
+    if cv_in.value < low_thresh:
+        for gate in gates:
+            gate.value = 0
+        current_gate = 0
+    elif cv_in.value > high_thresh and current_gate == 0:
+        for i in range(8):
+            flip = random.randrange(100) < prob[i]
+            gates[i].value = flip
+        current_gate = 1
