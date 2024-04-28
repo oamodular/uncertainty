@@ -33,6 +33,6 @@ while True:
         current_gate = 0
     elif cv_in.value > high_thresh and current_gate == 0:
         for i in range(8):
-            flip = random.randrange(100) <= prob[i]
+            flip = random.randrange(100) < prob[i]
             gates[i].value = flip
         current_gate = 1
