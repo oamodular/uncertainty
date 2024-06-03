@@ -21,8 +21,8 @@ gates = [
 for gate in gates:
     gate.direction = digitalio.Direction.OUTPUT
 
-high_thresh = 40000
-low_thresh = 38000
+high_thresh = 50000 # just under 3v
+low_thresh = 40000 # around 1v
 current_gate = 0
 
 while True:
