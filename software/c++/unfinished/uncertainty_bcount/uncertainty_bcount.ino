@@ -30,6 +30,8 @@ cv_t lastInput = cv_t(0.0);
 // bool to track input state for debounce/hysteresis
 bool isInputHigh = false;
 
+unsigned char state = 0xFF;
+
 void setup() {
   // 2x overclock for MAX POWER
   set_sys_clock_khz(250000, true);
@@ -45,9 +47,11 @@ void setup() {
     gpio_init(pin);
     gpio_set_dir(pin, GPIO_OUT);
   }
-}
 
-unsigned char state = 0;
+  for(int i=0; i<NUM_GATES; i++) {
+    gpio_put(gatePins[i], (state>>i)&0x1);
+  }
+}
 
 void loop() {
   // poll ADC as fast as possible
